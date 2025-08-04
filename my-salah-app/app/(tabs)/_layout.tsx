@@ -13,33 +13,44 @@ export default function TabLayout() {
 
   return (
     <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-        tabBarButton: HapticTab,
-        tabBarBackground: TabBarBackground,
-        tabBarStyle: Platform.select({
-          ios: {
-            // Use a transparent background on iOS to show the blur effect
-            position: 'absolute',
-          },
-          default: {},
-        }),
-      }}>
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
-        }}
-      />
-      <Tabs.Screen
-        name="explore"
-        options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
-        }}
-      />
-    </Tabs>
+  initialRouteName="index"
+  screenOptions={{
+    tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
+    headerShown: false,
+    tabBarShowLabel: false,
+    tabBarButton: HapticTab,
+    tabBarBackground: TabBarBackground,
+    tabBarStyle: {
+      backgroundColor: '#111',
+      borderTopColor: '#222',
+      ...Platform.select({
+        ios: {
+          position: 'absolute',
+        },
+        default: {},
+      }),
+    },
+  }}
+>
+
+  <Tabs.Screen
+    name="Stats"
+    options={{
+      tabBarIcon: ({ color }) => <IconSymbol size={28} name="chart.bar.fill" color={color} />,
+    }}
+  />
+    <Tabs.Screen
+    name="index"
+    options={{
+      tabBarIcon: ({ color }) => <IconSymbol size={32} name="house.fill" color={color} />,
+    }}
+  />
+  <Tabs.Screen
+    name="settings"
+    options={{
+      tabBarIcon: ({ color }) => <IconSymbol size={28} name="gearshape.fill" color={color} />,
+    }}
+  />
+</Tabs>
   );
 }
